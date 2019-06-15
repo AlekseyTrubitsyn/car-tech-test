@@ -1,0 +1,10 @@
+@import "./colors.scss";
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: $app-bg;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px #bbb;
+}

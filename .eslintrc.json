@@ -1,0 +1,43 @@
+{
+	"extends": ["airbnb"],
+	"rules": {
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [
+					".js",
+					".jsx"
+				]
+			}
+		],
+		"react/jsx-a11y": "off",
+		"react/prop-types": 0,
+		"no-underscore-dangle": 0,
+		"import/imports-first": ["error", "absolute-first"],
+		"import/newline-after-import": "error",
+		"no-tabs": 2,
+		"comma-dangle": 0,
+		"no-restricted-globals":"off",
+		"no-param-reassign":"off",
+		"prefer-destructuring":"off",
+		"no-unused-vars": "warn",
+		"object-curly-newline": 0,
+		"consistent-return":"off",
+		"max-len": [1, 125, 2, { "ignoreComments": true, "ignoreStrings": true,  "ignoreUrls": true   }],
+		"no-console": ["error", { "allow": ["log", "warn", "error","time","timeEnd"] }],
+		"linebreak-style":0,
+		"no-shadow":["warn",{ "allow": ["err","params"] }],
+		"no-use-before-define": [2, {"functions": false}],
+		"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+	},
+	"globals": {
+		"window": true,
+		"document": true,
+		"localStorage": true,
+		"FormData": true,
+		"FileReader": true,
+		"Blob": true,
+		"navigator": true
+	},
+	"parser": "babel-eslint"
+}

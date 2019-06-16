@@ -32,8 +32,14 @@ const CatalogGridItem = (props) => {
   } = props;
 
   return (
-    <div className={`${className} catalog-item ${listMode ? 'catalog-item_list-mode' : ''} `.trim()}>
-      <h3 className="catalog-item__header catalog-item-header">
+    <div className={
+      `${className} catalog-item
+      ${listMode ? 'catalog-item_list-mode' : ''} `.trim()}
+    >
+      <h3 className={
+        `catalog-item__header catalog-item-header
+        ${listMode ? 'catalog-item-header_list-mode' : ''} `.trim()}
+      >
         <span className="catalog-item-header__title">
           {title}
         </span>
@@ -41,7 +47,10 @@ const CatalogGridItem = (props) => {
           {id}
         </span>
       </h3>
-      <ul className="catalog-item__attributes catalog-item-attributes">
+      <ul className={
+        `catalog-item__attributes catalog-item-attributes
+        ${listMode ? 'catalog-item-attributes_list-mode' : ''}`.trim()}
+      >
         {attributes.map(attribute => (
           <li
             className="catalog-item-attributes__attribute"
@@ -51,11 +60,9 @@ const CatalogGridItem = (props) => {
           </li>
         ))}
       </ul>
-      {!listMode && (
-        <p className="catalog-item__description">
-          {description}
-        </p>
-      )}
+      <p className="catalog-item__description">
+        {description}
+      </p>
     </div>
   );
 };

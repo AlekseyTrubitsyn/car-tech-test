@@ -34,3 +34,20 @@
   outline: none;
   border: none;
 }
+
+.btn-secondary,
+.btn-secondary:disabled:hover,
+.btn-secondary[disabled]:hover,
+.btn-secondary:disabled:focus,
+.btn-secondary[disabled]:focus {
+  border-radius: 4px;
+  background: $secondary linear-gradient(to right, $secondary, darken($secondary, 5%));
+  color: white;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: lighten($secondary, 15%);
+  outline: none;
+  border: none;
+}

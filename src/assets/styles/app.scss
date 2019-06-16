@@ -1,10 +1,15 @@
 @import "./colors.scss";
+@import "./width.scss";
 
 .app {
   max-width: 1200px;
   margin: 0 auto;
   background: $app-bg;
-  padding: 16px;
+  padding: 4px;
   border-radius: 8px;
   box-shadow: 2px 2px 4px #bbb;
+
+  @media (min-width: $tablet-portrait-width) {
+    padding: 16px;
+  }
 }

@@ -1,0 +1,39 @@
+@import '../../assets/styles/colors.scss';
+
+.catalog-form {
+  padding: 12px;
+
+  .catalog-form__label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+  }
+
+  .catalog-form__input {
+  }
+}
+
+.catalog-form-label {
+  .catalog-form-label__text {
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+}
+
+.catalog-form-label__field {
+  border: 2px solid transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 8px 12px;
+  color: $primary;
+  width: 100%;
+
+  &:hover {
+    border-color: lighten($primary, 15%);
+  }
+
+  &:focus {
+    border-color: $primary;
+  }
+}

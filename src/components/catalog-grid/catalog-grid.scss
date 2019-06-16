@@ -1,0 +1,44 @@
+@import "../../assets/styles/width.scss";
+
+.catalog-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+
+  &.catalog-grid_list-mode {
+    flex-direction: column;
+
+    .catalog-grid__item {
+      display: block;
+
+      @media (min-width: $tablet-portrait-width) {
+        flex-basis: 100%;
+      }
+
+      @media (min-width: $desktop-width) {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  .catalog-grid__item {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    flex: 0 0 100%;
+
+    @media (min-width: $tablet-portrait-width) {
+      flex-basis: calc(50% - 10px);
+    }
+
+    @media (min-width: $desktop-width) {
+      flex-basis: calc(33.3333% - 10px);
+    }
+  }
+}
+
+.catalog-grid-item {
+  .catalog-grid-item__content {
+    height: 100%;
+  }
+}

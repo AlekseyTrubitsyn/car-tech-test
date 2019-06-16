@@ -144,6 +144,7 @@ class Catalog extends Component {
         />
         <CatalogHeader
           className="catalog__header"
+          listMode={listMode}
           onListModeSelect={this.handleListModeSelect}
           onGridModeSelect={this.handleGridModeSelect}
         />

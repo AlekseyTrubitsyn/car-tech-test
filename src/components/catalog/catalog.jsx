@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 
 import _cloneDeep from 'lodash/cloneDeep';
 
-import demoData from './demoData.json';
+import { data } from './data.json';
 
 import CatalogActions from '../catalog-actions';
 import CatalogHeader from '../catalog-header';
 import CatalogForm from '../catalog-form';
 import CatalogGrid from '../catalog-grid';
+
+const demoData = data.map(((item, index) => ({ ...item, id: index + 1 })));
 
 class Catalog extends Component {
   state = {

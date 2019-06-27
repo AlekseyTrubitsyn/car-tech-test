@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import {
   CLONE_LAST_BEFORE_FIRST,
+  CLONE_FIRST_AFTER_LAST
 } from '../constants/actionTypes';
 
 import reducer from './index';
@@ -77,6 +78,77 @@ describe('Reducer tests', () => {
 
       it('Source item should not be changed', () => {
         expect(result.items[result.items.length - 1]).toStrictEqual(state.items[state.items.length - 1]);
+      });
+    });
+  });
+
+  describe('CLONE_FIRST_AFTER_LAST', () => {
+    it('Source state should be immutable', () => {
+      const state = {
+        items,
+        nextId,
+        immutable: true
+      };
+
+      const result = reducer(state, { type: CLONE_FIRST_AFTER_LAST });
+      state.immutable = false;
+
+      expect(result.immutable).toBeTruthy();
+    });
+
+    it('Should not change items and nextId if the source array is empty', () => {
+      const state = {
+        items: [],
+        nextId: 5
+      };
+
+      const result = reducer(state, { type: CLONE_FIRST_AFTER_LAST });
+
+      expect(Array.isArray(result.items) && !result.items.length).toBeTruthy();
+      expect(result.nextId).toBe(5);
+    });
+
+    describe('Should clone the first item, push it to the end of the items array, and increment the nextId', () => {
+      const magicNumbers = [1, 2, 3, 4, 5, 6, 7];
+
+      const state = {
+        items: items.map(item => ({ ...item, magicNumbers })),
+        nextId
+      };
+
+      const result = reducer(state, { type: CLONE_FIRST_AFTER_LAST });
+
+      const clonedMagicNumbers = [...magicNumbers];
+      magicNumbers.pop();
+
+      const clonedItem = result.items[result.items.length - 1];
+
+      it('nextId should be incremented', () => {
+        expect(result.nextId).toBe(nextId + 1);
+      });
+
+      it('Modified array should be greater than source', () => {
+        expect(result.items.length).toBe(state.items.length + 1);
+      });
+
+      it('Cloned item should has a new id', () => {
+        expect(clonedItem.id).not.toBe(state.items[0].id);
+      });
+
+      it('Cloned item should be cloned deep', () => {
+        expect(clonedItem.magicNumbers).not.toStrictEqual(magicNumbers);
+      });
+
+      it('Cloned item should be cloned deep from the first item', () => {
+        expect(clonedItem).toStrictEqual({
+          ...state.items[0],
+          id: nextId,
+          magicNumbers: clonedMagicNumbers
+        });
+      });
+
+      it('Source item should not be changed', () => {
+        expect(result.items[0]).toStrictEqual(state.items[0]);
       });
     });
   });

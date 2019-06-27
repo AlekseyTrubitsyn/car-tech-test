@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 import {
   CLONE_LAST_BEFORE_FIRST,
-  CLONE_FIRST_AFTER_LAST
+  CLONE_FIRST_AFTER_LAST,
+  REMOVE_FIRST,
 } from '../constants/actionTypes';
 
 import reducer from './index';
@@ -150,6 +151,30 @@ describe('Reducer tests', () => {
       it('Source item should not be changed', () => {
         expect(result.items[0]).toStrictEqual(state.items[0]);
       });
+    });
+  });
+
+  describe('REMOVE_FIRST', () => {
+    const state = {
+      items,
+      nextId,
+      immutable: true
+    };
+
+    const result = reducer(state, { type: REMOVE_FIRST });
+
+    it('Should remove first item', () => {
+      expect(result.items).toStrictEqual(state.items.slice(1));
+    });
+
+    it('Should not change nextId', () => {
+      expect(result.nextId).toBe(state.nextId);
+    });
+
+    it('Source state should be immutable', () => {
+      state.immutable = false;
+
+      expect(result.immutable).toBeTruthy();
     });
   });
 });

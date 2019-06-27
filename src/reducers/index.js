@@ -3,7 +3,8 @@ import _cloneDeep from 'lodash/cloneDeep';
 import {
   CLONE_LAST_BEFORE_FIRST,
   CLONE_FIRST_AFTER_LAST,
-  REMOVE_FIRST
+  REMOVE_FIRST,
+  REMOVE_LAST
 } from '../constants/actionTypes';
 
 import { data } from '../data.json';
@@ -72,6 +73,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         items: state.items.slice(1)
+      };
+
+    case REMOVE_LAST:
+      return {
+        ...state,
+        items: state.items.slice(0, -1)
       };
 
     default:

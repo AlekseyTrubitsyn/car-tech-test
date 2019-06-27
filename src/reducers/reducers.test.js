@@ -3,6 +3,7 @@ import {
   CLONE_LAST_BEFORE_FIRST,
   CLONE_FIRST_AFTER_LAST,
   REMOVE_FIRST,
+  REMOVE_LAST
 } from '../constants/actionTypes';
 
 import reducer from './index';
@@ -165,6 +166,30 @@ describe('Reducer tests', () => {
 
     it('Should remove first item', () => {
       expect(result.items).toStrictEqual(state.items.slice(1));
+    });
+
+    it('Should not change nextId', () => {
+      expect(result.nextId).toBe(state.nextId);
+    });
+
+    it('Source state should be immutable', () => {
+      state.immutable = false;
+
+      expect(result.immutable).toBeTruthy();
+    });
+  });
+
+  describe('REMOVE_LAST', () => {
+    const state = {
+      items,
+      nextId,
+      immutable: true
+    };
+
+    const result = reducer(state, { type: REMOVE_LAST });
+
+    it('Should remove last item', () => {
+      expect(result.items).toStrictEqual(state.items.slice(0, -1));
     });
 
     it('Should not change nextId', () => {

@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 
 import CatalogItem, { catalogItemPropTypes } from '../catalog-item';
 
-const propTypes = {
+export const catalogItemsPropTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape(
       catalogItemPropTypes
     ).isRequired
   ).isRequired,
+};
+
+const propTypes = {
+  ...catalogItemsPropTypes,
   className: PropTypes.string,
   listMode: PropTypes.bool,
 };

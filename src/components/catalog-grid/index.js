@@ -1,3 +1,3 @@
-export { default } from './catalog-grid';
+export { default, catalogItemsPropTypes } from './catalog-grid';
 
 require('./catalog-grid.scss');

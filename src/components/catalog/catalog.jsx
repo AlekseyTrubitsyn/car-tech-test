@@ -5,11 +5,11 @@ import { data } from './data.json';
 
 import CatalogHeader from '../catalog-header';
 import CatalogForm from '../catalog-form';
-import CatalogGrid from '../catalog-grid';
 
 const demoData = data.map(((item, index) => ({ ...item, id: index + 1 })));
 
 import CatalogActionsContainer from '../../containers/catalog-actions-container';
+import CatalogGridContainer from '../../containers/catalog-grid-container';
 class Catalog extends Component {
   state = {
     items: demoData,
@@ -69,9 +69,8 @@ class Catalog extends Component {
           onListModeSelect={this.handleListModeSelect}
           onGridModeSelect={this.handleGridModeSelect}
         />
-        <CatalogGrid
+        <CatalogGridContainer
           className="catalog__grid"
-          items={items}
           listMode={listMode}
         />
         <CatalogForm

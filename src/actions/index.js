@@ -15,3 +15,8 @@ export const removeFirst = () => ({
 export const removeLast = () => ({
   type: types.REMOVE_LAST
 });
+
+export const addNewItem = payload => ({
+  type: types.ADD_NEW_ITEM,
+  payload
+});

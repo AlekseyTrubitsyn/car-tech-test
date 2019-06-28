@@ -3,14 +3,16 @@ import {
   CLONE_LAST_BEFORE_FIRST,
   CLONE_FIRST_AFTER_LAST,
   REMOVE_FIRST,
-  REMOVE_LAST
+  REMOVE_LAST,
+  ADD_NEW_ITEM
 } from '../constants/actionTypes';
 
 import {
   cloneLastBeforeFirst,
   cloneFirstAfterLast,
   removeFirst,
-  removeLast
+  removeLast,
+  addNewItem
 } from './index';
 
 describe('Actions tests', () => {
@@ -35,6 +37,13 @@ describe('Actions tests', () => {
   it('removeLast: should return correct type', () => {
     expect(removeLast()).toEqual({
       type: REMOVE_LAST
+    });
+  });
+
+  it('addNewItem: should return correct type and payload', () => {
+    expect(addNewItem({ test: true })).toStrictEqual({
+      type: ADD_NEW_ITEM,
+      payload: { test: true }
     });
   });
 });

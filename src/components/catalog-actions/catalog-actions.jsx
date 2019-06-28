@@ -8,7 +8,7 @@ const propTypes = {
   onRemoveLast: PropTypes.func.isRequired,
 };
 
-const CatalogHeader = (props) => {
+const CatalogActions = (props) => {
   const {
     className,
     onCloneLastToFirst,
@@ -55,5 +55,5 @@ const CatalogHeader = (props) => {
   );
 };
 
-CatalogHeader.propTypes = propTypes;
-export default CatalogHeader;
+CatalogActions.propTypes = propTypes;
+export default CatalogActions;

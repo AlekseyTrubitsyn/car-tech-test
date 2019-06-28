@@ -9,6 +9,7 @@ import * as Actions from '../../actions';
 import CatalogActions from '../../components/catalog-actions';
 
 const propTypes = {
+  arrayIsEmpty: PropTypes.bool.isRequired,
   cloneLastBeforeFirst: PropTypes.func.isRequired,
   cloneFirstAfterLast: PropTypes.func.isRequired,
   removeFirst: PropTypes.func.isRequired,
@@ -22,6 +23,7 @@ const defaultProps = {
 
 const CatalogActionsContainer = (props) => {
   const {
+    arrayIsEmpty,
     cloneLastBeforeFirst,
     cloneFirstAfterLast,
     removeFirst,
@@ -31,6 +33,7 @@ const CatalogActionsContainer = (props) => {
 
   return (
     <CatalogActions
+      arrayIsEmpty={arrayIsEmpty}
       onCloneLastToFirst={cloneLastBeforeFirst}
       onCloneFirstToLast={cloneFirstAfterLast}
       onRemoveFirst={removeFirst}
@@ -39,6 +42,8 @@ const CatalogActionsContainer = (props) => {
     />
   );
 };
+
+const mapStateToProps = state => ({ arrayIsEmpty: !state.items.length });
 
 const mapDispatchToProps = (dispatch) => {
   const {
@@ -58,4 +63,4 @@ const mapDispatchToProps = (dispatch) => {
 
 CatalogActionsContainer.propTypes = propTypes;
 CatalogActionsContainer.defaultProps = defaultProps;
-export default connect(null, mapDispatchToProps)(CatalogActionsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogActionsContainer);

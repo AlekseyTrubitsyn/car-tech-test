@@ -9,9 +9,11 @@ import {
 
 import { data } from '../data.json';
 
+const items = data.map((item, index) => ({ ...item, id: index + 1 }));
+
 const initialState = {
-  data,
-  nextId: Math.max(...data.map(item => item.id)) + 1
+  items,
+  nextId: Math.max(...items.map(item => item.id)) + 1
 };
 
 export default (state = initialState, action) => {

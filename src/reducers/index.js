@@ -20,6 +20,8 @@ const initialState = {
 export default (state = initialState, action) => {
   const cloneLastBeforeFirst = (items, nextId) => {
     if (!items.length) {
+      console.error('Catalog: can\'t clone last item, array is empty');
+
       return {
         items,
         nextId
@@ -40,6 +42,8 @@ export default (state = initialState, action) => {
 
   const cloneFirstAfterLast = (items, nextId) => {
     if (!items.length) {
+      console.error('Catalog: can\'t clone first item, array is empty');
+
       return {
         items,
         nextId
@@ -73,12 +77,20 @@ export default (state = initialState, action) => {
       };
 
     case REMOVE_FIRST:
+      if (!state.items.length) {
+        console.error('Catalog: can\'t remove first item, array is empty');
+      }
+
       return {
         ...state,
         items: state.items.slice(1)
       };
 
     case REMOVE_LAST:
+      if (!state.items.length) {
+        console.error('Catalog: can\'t remove last item, array is empty');
+      }
+
       return {
         ...state,
         items: state.items.slice(0, -1)

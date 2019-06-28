@@ -4,12 +4,13 @@ import React, { Component } from 'react';
 import { data } from './data.json';
 
 import CatalogHeader from '../catalog-header';
-import CatalogForm from '../catalog-form';
 
 const demoData = data.map(((item, index) => ({ ...item, id: index + 1 })));
 
 import CatalogActionsContainer from '../../containers/catalog-actions-container';
 import CatalogGridContainer from '../../containers/catalog-grid-container';
+import CatalogFormContainer from '../../containers/catalog-form-container';
+
 class Catalog extends Component {
   state = {
     items: demoData,
@@ -37,21 +38,6 @@ class Catalog extends Component {
     });
   }
 
-  handleAddNewItem = (newItem) => {
-    const {
-      items,
-      nextId
-    } = this.state;
-
-    this.setState({
-      items: items.concat({
-        ...newItem,
-        id: nextId
-      }),
-      nextId: nextId + 1
-    });
-  }
-
   render() {
     const {
       items,
@@ -73,9 +59,8 @@ class Catalog extends Component {
           className="catalog__grid"
           listMode={listMode}
         />
-        <CatalogForm
+        <CatalogFormContainer
           className="catalog__form"
-          onSubmit={this.handleAddNewItem}
         />
       </div>
     );

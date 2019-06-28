@@ -3,7 +3,8 @@ import {
   CLONE_LAST_BEFORE_FIRST,
   CLONE_FIRST_AFTER_LAST,
   REMOVE_FIRST,
-  REMOVE_LAST
+  REMOVE_LAST,
+  ADD_NEW_ITEM
 } from '../constants/actionTypes';
 
 import reducer from './index';
@@ -194,6 +195,49 @@ describe('Reducer tests', () => {
 
     it('Should not change nextId', () => {
       expect(result.nextId).toBe(state.nextId);
+    });
+
+    it('Source state should be immutable', () => {
+      state.immutable = false;
+
+      expect(result.immutable).toBeTruthy();
+    });
+  });
+
+  describe('ADD_NEW_ITEM', () => {
+    const state = {
+      items,
+      nextId,
+      immutable: true
+    };
+
+    const newItem = {
+      id: state.nextId,
+      title: 'test',
+      attributes: [
+        'test 1.1',
+        'test 1.2'
+      ],
+      description: 'test description'
+    };
+
+    const result = reducer(state, {
+      type: ADD_NEW_ITEM,
+      payload: newItem
+    });
+
+    it('Should add new item to the items array', () => {
+      expect(result.items).toStrictEqual(state.items.concat(newItem));
+    });
+
+    it('Should increment nextId', () => {
+      expect(result.nextId).toBe(state.nextId + 1);
+    });
+
+    it('Source items array should be immutable', () => {
+      state.items = [];
+
+      expect(result.items.length).not.toBe(0);
     });
 
     it('Source state should be immutable', () => {

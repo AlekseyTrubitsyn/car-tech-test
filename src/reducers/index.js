@@ -4,7 +4,8 @@ import {
   CLONE_LAST_BEFORE_FIRST,
   CLONE_FIRST_AFTER_LAST,
   REMOVE_FIRST,
-  REMOVE_LAST
+  REMOVE_LAST,
+  ADD_NEW_ITEM
 } from '../constants/actionTypes';
 
 import { data } from '../data.json';
@@ -81,6 +82,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         items: state.items.slice(0, -1)
+      };
+
+    case ADD_NEW_ITEM:
+      return {
+        ...state,
+        items: state.items.concat({
+          ...action.payload,
+          id: state.nextId
+        }),
+        nextId: state.nextId + 1
       };
 
     default:

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 
-
-import { data } from './data.json';
-
 import CatalogHeader from '../catalog-header';
 
-const demoData = data.map(((item, index) => ({ ...item, id: index + 1 })));
 
 import CatalogActionsContainer from '../../containers/catalog-actions-container';
 import CatalogGridContainer from '../../containers/catalog-grid-container';
@@ -13,8 +9,6 @@ import CatalogFormContainer from '../../containers/catalog-form-container';
 
 class Catalog extends Component {
   state = {
-    items: demoData,
-    nextId: Math.max(...demoData.map(item => item.id)) + 1,
     listMode: false
   };
 
@@ -39,10 +33,7 @@ class Catalog extends Component {
   }
 
   render() {
-    const {
-      items,
-      listMode
-    } = this.state;
+    const { listMode } = this.state;
 
     return (
       <div className="catalog">

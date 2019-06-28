@@ -23,8 +23,6 @@ const CatalogGridContainer = (props) => {
     className,
   } = props;
 
-  console.log(props);
-
   return (
     <CatalogGrid
       items={items}

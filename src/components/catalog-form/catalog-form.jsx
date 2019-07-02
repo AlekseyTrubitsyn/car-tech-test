@@ -121,6 +121,7 @@ class CatalogForm extends Component {
         </label>
         <button
           className="btn btn-primary btn-inline catalog-form__button"
+          id="catalog-form-submit-button"
           title="Добавить новый объект в каталог"
           type="submit"
           disabled={!fillsFilled}

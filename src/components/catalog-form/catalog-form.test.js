@@ -107,4 +107,74 @@ describe('CatalogForm', () => {
       expect(mockSubmit).not.toHaveBeenCalled();
     });
   });
+
+  describe('fields should change state', () => {
+    beforeAll(() => {
+      catalogForm.setState(initialState);
+    });
+
+    const value = 'test';
+
+    it('title field should change title prop in the state', () => {
+      titleField.simulate('change', {
+        target: {
+          value
+        }
+      });
+
+      const nextState = catalogForm.state();
+
+      expect(nextState.title).toBe(value);
+      expect(nextState.attributes).toBe(initialState.attributes);
+      expect(nextState.description).toBe(initialState.description);
+    });
+
+    it('attributes field should change attributes prop in the state', () => {
+      attributesField.simulate('change', {
+        target: {
+          value
+        }
+      });
+
+      const nextState = catalogForm.state();
+
+      expect(nextState.attributes).toBe(value);
+      expect(nextState.title).toBe(initialState.title);
+      expect(nextState.description).toBe(initialState.description);
+    });
+
+    it('attributes field value may be multiline', () => {
+      const multilineValue = [...(new Array(10))].map(() => value).join('\n');
+
+      attributesField.simulate('change', {
+        target: {
+          value: multilineValue
+        }
+      });
+
+      const nextState = catalogForm.state();
+
+      expect(nextState.attributes).toBe(multilineValue);
+      expect(nextState.title).toBe(initialState.title);
+      expect(nextState.description).toBe(initialState.description);
+    });
+
+    it('description field should change description prop in the state', () => {
+      descriptionField.simulate('change', {
+        target: {
+          value
+        }
+      });
+
+      const nextState = catalogForm.state();
+
+      expect(nextState.description).toBe(value);
+      expect(nextState.title).toBe(initialState.title);
+      expect(nextState.attributes).toBe(initialState.attributes);
+    });
+
+    afterEach(() => {
+      catalogForm.setState(initialState);
+    });
+  });
 });

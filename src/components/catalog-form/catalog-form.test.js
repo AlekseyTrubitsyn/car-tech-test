@@ -177,4 +177,58 @@ describe('CatalogForm', () => {
       catalogForm.setState(initialState);
     });
   });
+
+  describe('form submit', () => {
+    beforeAll(() => {
+      catalogForm.setState(initialState);
+    });
+
+    it('submit button should be disabled if the title is empty', () => {
+      catalogForm.setState({ title: '' });
+
+      const updatedSubmitButton = catalogForm.find(SUBMIT_BUTTON_SELECTOR);
+
+      expect(updatedSubmitButton.props().disabled).toBeTruthy();
+    });
+
+    it('submit button should be enabled if the title is not empty', () => {
+      catalogForm.setState({ title: 'test' });
+
+      const updatedSubmitButton = catalogForm.find(SUBMIT_BUTTON_SELECTOR);
+
+      expect(updatedSubmitButton.props().disabled).toBeFalsy();
+    });
+
+    it('form node onSubmit callback is null if the title is empty', () => {
+      catalogForm.setState({ title: '' });
+
+      expect(catalogForm.props().onSubmit).toBeFalsy();
+    });
+
+    it('form node onSubmit callback is function if the title is not empty', () => {
+      catalogForm.setState({ title: 'test' });
+
+      expect(typeof catalogForm.props().onSubmit).toBe('function');
+    });
+
+    it('component should call prop function onSubmit with correct data on form submit', () => {
+      const attributes = 'test attributes 1\ntest attributes 2\ntest attributes 3';
+
+      const dataToSubmit = {
+        title: 'test title',
+        attributes,
+        description: 'test description',
+      };
+
+      catalogForm.setState(dataToSubmit);
+
+      catalogForm.simulate('submit', { preventDefault: () => {} });
+
+      expect(mockSubmit).toHaveBeenCalledWith({ ...dataToSubmit, attributes: attributes.split('\n') });
+    });
+
+    afterEach(() => {
+      catalogForm.setState(initialState);
+    });
+  });
 });
